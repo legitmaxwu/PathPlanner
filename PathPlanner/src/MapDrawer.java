@@ -50,11 +50,11 @@ public class MapDrawer extends JFrame {
 	
 	
 	public static void main(String[] args){
-		Map field = new Map(40, 40);
+		Map field = new Map(100, 100);
 		field.setStart(0, 0);
 		field.setEnd(field.getLENGTH() - 4, field.getWIDTH() - 4);
 		
-		MazeGenerator maze = new MazeGenerator(40);
+		MazeGenerator maze = new MazeGenerator(100);
 		maze.generateMaze();
 		for (int i = 0; i < maze.getMaze().length; i++) {
 			for (int j = 0; j < maze.getMaze()[0].length; j++) {

@@ -38,14 +38,14 @@ public class MapPanel extends JPanel{
 		map.setCurrSquareChunk(map.copyChunk(map.getOriginalSquareChunk()));
 		map.findShortestPath(map.getCurrSquareChunk());
 		findMaxDist();
-		map.printDist();
+		//map.printDist();
 		int[][] instructions = map.getPath(map.getEnd());
 		
-		for (int i = 0; i < instructions.length; i++) {
-			for (int j = 0; j < 2; j++)
-				System.out.printf("%3d", instructions[i][j]);
-			System.out.println();
-		}
+//		for (int i = 0; i < instructions.length; i++) {
+//			for (int j = 0; j < 2; j++)
+//				System.out.printf("%3d", instructions[i][j]);
+//			System.out.println();
+//		}
 		
 		for (int i = 0; i < instructions.length; i++) {
 			map.getCurrSquareChunk().setHead(map.getCurrSquareChunk().getChunk().get(0));
@@ -59,7 +59,7 @@ public class MapPanel extends JPanel{
 			
 			paintImmediately(new Rectangle(0,0, WIDTH, HEIGHT));
 			try {
-				Thread.sleep(20);
+				Thread.sleep(0);
 			}catch(InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
@@ -72,7 +72,7 @@ public class MapPanel extends JPanel{
 		int maxDistance = map.getMap()[0][0].getDist();
 		for (int i = 0; i < map.getLENGTH(); i++) {
 			for (int j = 0; j < map.getWIDTH(); j++) {
-				System.out.print(j);
+				//System.out.print(j);
 				if (map.getMap()[i][j].getDist() > maxDist && map.getMap()[i][j].getDist() != Integer.MAX_VALUE)
 					maxDistance = map.getMap()[i][j].getDist();
 			}
@@ -99,17 +99,18 @@ public class MapPanel extends JPanel{
 				else if (map.getMap()[x][y] == map.getEnd())
 					g.setColor(Color.RED);
 				else if (map.getMap()[x][y].getDist() == -1)
-					g.setColor(Color.CYAN);
+					g.setColor(Color.BLACK);
 				else if (onPath)
 					g.setColor(Color.WHITE);
 				else if (maxDist == -1)
-					g.setColor(Color.BLACK);
+					g.setColor(Color.WHITE);
 				else
 					g.setColor(new Color(Color.HSBtoRGB(0.8f * (float)map.getMap()[x][y].getDist() / (float)maxDist, 0.5f, 0.7f)));
+					//g.setColor(new Color(Color.HSBtoRGB(0.0f, 1.0f, (float)map.getMap()[x][y].getDist() / (float)maxDist)));
 //				if (map.getMap()[x][y] == map.getCurr())
 //					g.setColor(Color.GREEN);
 				if (map.getCurrSquareChunk().getChunk().contains(map.getMap()[x][y]))
-					g.setColor(Color.GREEN);
+					g.setColor(Color.WHITE);
 				g.fillRect(i,j, 1,1);
 			}
 		}
