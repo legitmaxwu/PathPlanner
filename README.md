@@ -2,4 +2,4 @@
 Djikstra's Algorithm Visualizer
 
 ![](path-planner.gif)
-![](path-planner (1).gif)
+![](path-planner%20(1).gif)
